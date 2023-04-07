@@ -1,6 +1,6 @@
 import { Footer } from './Footer'
 import './globals.css'
-import { Navbar } from './Navbar'
+import Navbar from './Navbar'
 import Providers from './providers'
 
 export const metadata = {
@@ -18,7 +18,9 @@ export default function RootLayout({
       <body>
         <Providers>
           <Navbar />
-          {children}
+          <main className='max-w-[1200px] mx-auto my-10 p-2'>
+            {children}
+          </main>
           <Footer />
         </Providers>
       </body>

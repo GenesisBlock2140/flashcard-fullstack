@@ -4,13 +4,13 @@ import Image from "next/image"
 
 export default function Home() {
   return (
-    <main className="max-w-[1200px] mx-auto">
+    <div>
       <section className="text-center my-[50px] lg:mt-[170px] lg:mb-[210px]">
         <h1 className="text-[45px] leading-[3rem] font-roboto font-bold lg:text-[75px] lg:leading-[5rem]">Flashcard <br/> pour apprendre</h1>
-        <p className="text-[28px] m-10">Créez vos flashcard gratuitement <br/> dans un environnement minimaliste</p>
+        <p className="text-[28px] m-6">Créez vos flashcard gratuitement <br/> dans un environnement minimaliste</p>
         <div className="flex items-center justify-center gap-5 flex-wrap">
-          <ButtonLink text="Tutoriel" to={"/"} format="black" />
-          <ButtonLink text="Inscription" to={"/"} format="bleu" />
+          <ButtonLink text="Tutoriel" to={"/faq"} format="black" />
+          <ButtonLink text="Inscription" to={"/api/auth/signin"} format="bleu" />
         </div>
       </section>
       <section className="text-center">
@@ -21,6 +21,6 @@ export default function Home() {
           <Image src={flashcardPres} alt="présentation schema flashcard" />
         </div>
       </section>
-    </main>
+    </div>
   )
 }

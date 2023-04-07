@@ -4,8 +4,8 @@ interface IFooter {}
 
 export const Footer: FC<IFooter> = () => {
   return (
-    <div className="bg-[#F7F7F7]">
-      <footer className="max-w-[1200px] h-[300px] mx-auto flex justify-between items-center flex-wrap text-xl font-medium">
+    <footer className="bg-[#F7F7F7]">
+      <div className="max-w-[1200px] h-[300px] mx-auto flex justify-between items-center flex-wrap text-xl font-medium">
         <div>
           <p className="text-3xl font-bold">Flashcard</p>
           <p>Développé par LIEN</p>
@@ -16,7 +16,7 @@ export const Footer: FC<IFooter> = () => {
           <p className="text-3xl font-bold">contact@nomdusite.com</p>
           <p className="text-[15px] text-[#373737]">N’hésitez pas à donner votre feedback, des suggestions !</p>
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
   )
 }
