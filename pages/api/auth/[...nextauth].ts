@@ -1,7 +1,7 @@
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthOptions } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import client from "../../../prisma/client"
+import {client} from "../../../prisma/client"
 
 declare var process : {
   env: {
@@ -11,7 +11,7 @@ declare var process : {
   }
 }
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(client),
   providers: [
     GithubProvider({
