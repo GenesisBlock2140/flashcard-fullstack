@@ -11,23 +11,8 @@ export default async function DeckSlug ({params}:{params: { slug: string }}) {
     return notFound()
   }
 
-  const deck = await client.deck.findUnique({
-    where: {
-      id: params.slug
-    }
-  })
-
-  const checkflash = await client.flashcard.findMany({
-    where: {
-      deckId: params.slug
-    }
-  })
-
-
-  console.log(deck)
-  console.log(checkflash)
-
-  // TODO: Faire condition si PAS PUBLIC    OU    PAS LE DECK DE l'USER
+  // TODO: Faire condition si PAS PUBLIC    ET   PAS LE DECK DE l'USER = return notfound
+  // TODO: Fetch data using prisma and send it to child
   if (!deckJson.deck.isPublic) {
     return notFound()
   }
