@@ -24,7 +24,8 @@ model Deck {
   theme      String
   isPublic   Boolean     @default(false)
   flashcards Flashcard[]
-  deckAuthor User        @relation(fields: [id], references: [id])
+  authorId   String @db.ObjectId
+  deckAuthor User        @relation(fields: [authorId], references: [id])
 }
 
 model Account {

@@ -9,8 +9,8 @@ interface IButtonLink {
 
 export const ButtonLink: FC<IButtonLink> = ({text, to, format}) => {
 
-  const btnFormat = format === "bleu" ? "bg-[#1A91FF] text-[#fff] h-[50px] py-3 border-[3px] border-[#1A91FF]" : "bg-white border-[3px] border-black text-black py-[9px]"
-  const btnFormatHover = format === "bleu" ? "hover:bg-[#fff] hover:text-[#1A91FF]" : "hover:bg-black hover:text-white"
+  const btnFormat = format === "bleu" ? "bg-primary text-white h-[50px] py-3 border-[3px] border-primary" : "bg-white border-[3px] border-black text-black py-[9px]"
+  const btnFormatHover = format === "bleu" ? "hover:bg-white hover:text-primary" : "hover:bg-black hover:text-white"
 
   return (
     <Link 

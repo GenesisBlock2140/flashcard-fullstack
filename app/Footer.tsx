@@ -13,7 +13,7 @@ export const Footer: FC<IFooter> = () => {
         </div>
         <div>
           <p className="font-bold">Une question ?</p>
-          <p className="text-3xl font-bold">contact@nomdusite.com</p>
+          <p className="text-2xl font-bold">contact@nomdusite.com</p>
           <p className="text-[15px] text-[#373737]">N’hésitez pas à donner votre feedback, des suggestions !</p>
         </div>
       </div>
