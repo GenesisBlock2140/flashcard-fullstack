@@ -1,11 +1,32 @@
-import { DeckCard } from "@/components/Card/DeckCard"
+import { DefaultSession, getServerSession } from "next-auth"
+import { redirect } from "next/navigation"
+import { client } from "@/prisma/client"
+import { authOptions } from "@/pages/api/auth/[...nextauth]"
+
 import { ButtonLink } from "@/components/Button/ButtonLink"
 import { ProfilDetails } from "@/components/ProfilDetails"
-
-import { getServerSession } from "next-auth"
-import { redirect } from "next/navigation"
-import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { LogOut } from "@/components/Auth/LogOut"
+import { DeckList } from "@/components/DeckList"
+import { DeckListEmpty } from "@/components/DeckListEmpty"
+
+const getUserId = async (session: DefaultSession) => {
+  return await client.user.findUnique({
+    where: {
+      email: session.user?.email || ""
+    },
+    select: {
+      id: true
+    }
+  })
+}
+
+const getDecksForUser = async (userId: string) => {
+  return await client.deck.findMany({
+    where: {
+      authorId: userId
+    }
+  })
+}
 
 export default async function Profil() {
 
@@ -14,6 +35,14 @@ export default async function Profil() {
   if (!session) {
     return redirect("/api/auth/signin")
   }
+
+  const userId = await getUserId(session)
+
+  if (!userId) {
+    return redirect("/api/auth/signin")
+  }
+
+  const userDeck = await getDecksForUser(userId.id)
 
   return (
     <div className="max-w-[1000px] mx-auto">
@@ -27,16 +56,13 @@ export default async function Profil() {
         picture={session.user?.image || ""}
       />
       <section className="text-center m-20">
-        <h2 className="text-2xl lg:text-3xl font-roboto font-medium mb-5">Créer un nouveau deck ?</h2>
+        <h2 className="text-xl lg:text-3xl font-roboto font-medium mb-5">Créer un nouveau deck ?</h2>
         <ButtonLink text="C'est parti" to={"/"} format="bleu" />
       </section>
-      <p className="text-2xl font-roboto font-light p-2">Decks (5)</p>
-      <section className="flex justify-center lg:justify-around items-center flex-wrap m-10">
-        <DeckCard title="Révision histoire" />
-        <DeckCard title="Révision histoire" />
-        <DeckCard title="Révision histoire" />
-        <DeckCard title="Révision histoire" />
-      </section>
+      {userDeck.length === 0 
+      ? <DeckListEmpty /> 
+      : <DeckList flashcards={userDeck}/>
+      }
     </div>
   )
 }
