@@ -56,8 +56,7 @@ export default async function Profil() {
         picture={session.user?.image || ""}
       />
       <section className="text-center m-20">
-        <h2 className="text-xl lg:text-3xl font-roboto font-medium mb-5">Créer un nouveau deck ?</h2>
-        <ButtonLink text="C'est parti" to={"/"} format="bleu" />
+        <ButtonLink text="+ Créer un nouveau deck" to={"/"} format="bleu" />
       </section>
       {userDeck.length === 0 
       ? <DeckListEmpty /> 

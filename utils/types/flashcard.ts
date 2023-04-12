@@ -3,5 +3,5 @@ export type Flashcard = {
   textRecto: string
   textVerso: string
   deckId: string
-  initialDeck: string
+  initialDeck?: string
 }
