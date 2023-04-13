@@ -3,19 +3,23 @@ import Link from "next/link"
 
 interface IButtonLink {
   text: string
+  color: string
   to: string
-  format: string
 }
 
-export const ButtonLink: FC<IButtonLink> = ({text, to, format}) => {
+const colors = {
+  black: 'bg-dark text-white hover:bg-white hover:text-dark',
+  white: 'bg-white text-dark hover:bg-dark hover:text-white'
+}
 
-  const btnFormat = format === "bleu" ? "bg-dark text-white h-[50px] py-3 border-[3px] border-dark" : "bg-white border-[3px] border-dark text-dark py-[9px]"
-  const btnFormatHover = format === "bleu" ? "hover:bg-white hover:text-dark" : "hover:bg-dark hover:text-white"
+export const ButtonLink: FC<IButtonLink> = ({text, color, to}) => {
+
+  let colorClasses = color === 'black' ? colors['black'] : colors['white']
 
   return (
     <Link 
       href={to} 
-      className={`w-[150px] h-[50px] text-[18px] font-bold rounded-lg px-5 py-[9px] ${btnFormat} ${btnFormatHover} transition ease-in-out duration-500`}>
+      className={`w-[150px] h-[50px] text-[18px] font-bold ${colorClasses} border-[3px] border-dark rounded-lg px-5 py-[9px] transition ease-in-out duration-500`}>
       {text}
     </Link>
   )

@@ -19,8 +19,8 @@ export default function Home() {
           <p>Inscrivez-vous en moins de 10 secondes</p>
         </div>
         <div className="flex items-center justify-center gap-5 flex-wrap">
-          <ButtonLink text="Tutoriel" to={"/faq"} format="black" />
-          <ButtonLink text="Inscription" to={"/login"} format="bleu" />
+          <ButtonLink text="Tutoriel" to={"/faq"} color="white" />
+          <ButtonLink text="Inscription" to={"/login"} color="black" />
         </div>
       </section>
       <section className="text-center">

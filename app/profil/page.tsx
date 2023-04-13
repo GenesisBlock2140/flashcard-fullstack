@@ -33,13 +33,13 @@ export default async function Profil() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
-    return redirect("/api/auth/signin")
+    return redirect("/login")
   }
 
   const userId = await getUserId(session)
 
   if (!userId) {
-    return redirect("/api/auth/signin")
+    return redirect("/login")
   }
 
   const userDeck = await getDecksForUser(userId.id)
@@ -55,9 +55,9 @@ export default async function Profil() {
         email={session.user?.email || ""}
         picture={session.user?.image || ""}
       />
-      <section className="text-center m-20">
-        <ButtonLink text="+ Créer un nouveau deck" to={"/"} format="bleu" />
-      </section>
+      <div className="text-center m-20">
+        <ButtonLink text="+ Créer un nouveau deck" to={"/deck/create"} color="black" />
+      </div>
       {userDeck.length === 0 
       ? <DeckListEmpty /> 
       : <DeckList flashcards={userDeck}/>
