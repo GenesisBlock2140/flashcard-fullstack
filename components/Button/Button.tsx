@@ -2,18 +2,25 @@ import { FC } from 'react'
 
 interface IButton {
   text: string
-  bgColor: string
-  textColor: string
+  color: string
   icon?: string
-  action: () => void
+  action?: () => void
 }
 
-export const Button: FC<IButton> = ({text, bgColor, textColor, icon, action}) => {
+const btnColors = {
+  black: 'bg-dark text-white',
+  white: 'bg-white text-dark'
+}
+
+const btnDefaultStyle = 'w-[140px] text-xl px-4 py-2 rounded-lg border-[3px] border-dark'
+
+export const Button: FC<IButton> = ({text, color, icon, action}) => {
+
+  let selectedColor = color === 'black' ? btnColors['black'] : btnColors['white']
+
   return (
     <button 
-      className={`w-[140px] text-xl px-4 py-2 rounded-lg 
-      bg-${bgColor} 
-      text-${textColor}`}
+      className={`${btnDefaultStyle} ${selectedColor}`}
       onClick={action}
     >
       {text}
