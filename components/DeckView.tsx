@@ -32,7 +32,7 @@ export const DeckView: FC<IDeckView> = ({flashcards}) => {
   return (
     <div>
       <div className='max-w-[250px] lg:max-w-[350px] mx-auto my-2'>
-        <ProgressBar progress={progressPourcent} />
+        <ProgressBar progress={Math.round(progressPourcent)} />
       </div>
       <FlashCard 
         textRecto={flashcards[currentFlashcard].textRecto}

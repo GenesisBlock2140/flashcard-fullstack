@@ -4,6 +4,8 @@ import { FC, useEffect, useRef, useState } from "react"
 import { Button } from "@/components/Button/Button"
 import { FlashCard } from "@/components/Card/FlashCard"
 import { TextAreaDeckCreation } from "@/components/TextAreaDeckCreation"
+import { createDeck } from "@/services/auth/createDeck"
+import { ModalPublish } from "./Modal/ModalPublish"
 
 type FlashCard = {
   textRecto: string
@@ -15,6 +17,7 @@ interface IDeckBuilder {}
 export const DeckBuilder: FC<IDeckBuilder> = () => {
   const [allFlashcards, setAllFlashcards] = useState<FlashCard[]>([])
   const [currentFlashCardEdit, setCurrentFlashcardEdit] = useState<number>(0)
+  const [showConfirm, setShowConfirm] = useState<boolean>(false)
 
   const textRecto = useRef<HTMLTextAreaElement>(null)
   const textVerso = useRef<HTMLTextAreaElement>(null)
@@ -79,6 +82,16 @@ export const DeckBuilder: FC<IDeckBuilder> = () => {
     }
   }
 
+  const handleSubmit = async() => {
+    const testt = await createDeck({
+      name: "Test",
+      theme: "Test",
+      flashcard: allFlashcards
+    })
+
+    console.log(testt)
+  }
+
   return (
     <div>
       <h1 className="text-xl font-medium text-center mb-10">Exemple titre - exemple theme</h1>
@@ -89,7 +102,7 @@ export const DeckBuilder: FC<IDeckBuilder> = () => {
             <Button text="Précedent" color="white" action={previousFlashcard} />
           </div>
           <div>
-            <Button text="Publier" color="black" />
+            <Button text="Publier" color="black" action={() => setShowConfirm(show => !show)} />
             <p className="text-center">
               {`${currentFlashCardEdit}/${allFlashcards.length}`}
             </p>
@@ -100,6 +113,9 @@ export const DeckBuilder: FC<IDeckBuilder> = () => {
           <TextAreaDeckCreation textAreaName="Verso" textAreaRef={textVerso} />
         </div>
       </div>
+      {showConfirm 
+      ? <ModalPublish actionClose={() => setShowConfirm(show => !show)} action={handleSubmit} /> 
+      : null}
     </div>
   )
 }
