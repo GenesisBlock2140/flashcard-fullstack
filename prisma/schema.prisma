@@ -15,7 +15,7 @@ model Flashcard {
   textRecto   String
   textVerso   String
   deckId      String @db.ObjectId
-  initialDeck Deck   @relation(fields: [deckId], references: [id])
+  initialDeck Deck   @relation(fields: [deckId], references: [id], onDelete: Cascade)
 }
 
 model Deck {
@@ -25,7 +25,7 @@ model Deck {
   isPublic   Boolean     @default(false)
   flashcards Flashcard[]
   authorId   String @db.ObjectId
-  deckAuthor User        @relation(fields: [authorId], references: [id])
+  deckAuthor User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
 }
 
 model Account {

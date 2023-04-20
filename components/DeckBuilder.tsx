@@ -4,7 +4,7 @@ import { FC, useEffect, useRef, useState } from "react"
 import { Button } from "@/components/Button/Button"
 import { FlashCard } from "@/components/Card/FlashCard"
 import { TextAreaDeckCreation } from "@/components/TextAreaDeckCreation"
-import { createDeck } from "@/services/auth/createDeck"
+import { createDeck } from "@/services/api/createDeck"
 import { ModalPublish } from "./Modal/ModalPublish"
 
 type FlashCard = {

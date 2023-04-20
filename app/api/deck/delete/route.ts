@@ -28,9 +28,45 @@ export async function DELETE(request: Request, response:Response) {
     })
   }
 
-  // In try catch
-  // TODO: Fetch deckId data
-  // TODO: Check if userId === userId de la session
-  // DELETE deck AND flashcard collection
+  try {
+
+    const deckData = await client.deck.findUnique({
+      where: {
+        id: deckId
+      }
+    })
+
+    if (!deckData) {
+      return new NextResponse("Impossible de trouver un deck", {
+        status: 400
+      })
+    }
+
+    const userData = await client.user.findUnique({
+      where: {
+        email: session.user?.email || ""
+      }
+    })
+
+
+    if (deckData.authorId !== userData?.id) {
+      return new NextResponse("Cet utilisateur n'est pas le créateur du deck", {
+        status: 403
+      })
+    }
+
+    const deleteDeckInDB = await client.deck.delete({
+      where: {
+        id: deckId
+      }
+    })
+
+    return new NextResponse("Deck supprimé", {
+      status: 200
+    })
+  
+  } catch (error) {
+    console.log(error)
+  }
 
 }
