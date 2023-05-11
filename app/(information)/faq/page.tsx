@@ -1,5 +1,5 @@
 import { Question } from "@/components/Question";
-import { qData } from "@/utils/data/question"
+import { faqConf } from "@/config/faqConf";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,14 +10,14 @@ export const metadata: Metadata = {
 export default function Faq () {
 
   return (
-    <div className="my-10">
+    <>
       <h1 className="text-4xl lg:text-[48px] font-bold text-dark text-center">Foire aux questions </h1>
-      <p className="max-w-[600px] mx-auto my-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque felis arcu, viverra et bibendum sed.</p>
+      <p className="max-w-[600px] mx-auto my-10">Les réponses à vos questions les plus fréquentes sur notre application et son fonctionnement, en toute transparence.</p>
       <section>
-        {qData.map((data, key) => {
-          return <Question question={data.question} answer={data.res} key={key} />
+        {faqConf.q.map((data, key) => {
+          return <Question question={data.question} answer={data.answer} key={key} />
         })}
       </section>
-    </div>
+    </>
   )
 }

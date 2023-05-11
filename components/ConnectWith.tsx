@@ -3,7 +3,9 @@
 import { FC } from 'react'
 import { signIn } from "next-auth/react"
 import Image from "next/image"
-import github from "../public/svg/github.svg"
+import google from "@/public/svg/google.svg"
+import github from "@/public/svg/github.svg"
+import twitter from "@/public/svg/twitter.svg"
 
 interface IConnectWith {
   provider: string
@@ -11,12 +13,25 @@ interface IConnectWith {
 
 export const ConnectWith: FC<IConnectWith> = ({ provider }) => {
 
-  const imgProvier = provider === "github" ? github : ""
+  // google provider default to avoid typescript error
+  let imgProvier = google
+
+  switch (provider.toLowerCase()) {
+    case "github":
+      imgProvier = github
+      break;
+    case "twitter":
+      imgProvier = twitter
+      break;
+    default:
+      imgProvier = google
+      break;
+  }
 
   return (
-    <div className="w-[350px] block mx-auto border-2 rounded-lg p-3 m-6 cursor-pointer" onClick={() => signIn(provider)}>
-      <Image src={imgProvier} alt={provider} width={22} className="inline-block mt-[-7px]" />
-      <p className="font-medium text-[18px] inline-block">Github</p>
+    <div className="w-[350px] flex items-center justify-center border-2 rounded-lg p-3 cursor-pointer hover:bg-slate-200 duration-300" onClick={() => signIn(provider.toLowerCase())}>
+      <Image src={imgProvier} alt={provider} width={16} className="mr-2" />
+      <p className="text-base">{provider}</p>
     </div>
   )
 }

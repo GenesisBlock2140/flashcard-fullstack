@@ -7,7 +7,7 @@ interface ILogOut {}
 
 export const LogOut: FC<ILogOut> = () => {
   return (
-    <button className='text-xl' onClick={() => signOut()}>
+    <button className='text-base' onClick={() => signOut()}>
       Déconnexion
     </button>
   )
