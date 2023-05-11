@@ -2,12 +2,15 @@ import { DefaultSession, getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
 import { client } from "@/prisma/client"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
-
-import { ButtonLink } from "@/components/Button/ButtonLink"
-import { ProfilDetails } from "@/components/ProfilDetails"
-import { LogOut } from "@/components/Auth/LogOut"
 import { DeckList } from "@/components/DeckList"
 import { DeckListEmpty } from "@/components/DeckListEmpty"
+import { ProfilWelcome } from "@/components/ProfilWelcome"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Profil",
+  description: "Flashcard en ligne vous permet de réaliser des flashcards gratuitement."
+}
 
 const getUserId = async (session: DefaultSession) => {
   return await client.user.findUnique({
@@ -45,23 +48,12 @@ export default async function Profil() {
   const userDeck = await getDecksForUser(userId.id)
 
   return (
-    <div className="max-w-[1000px] mx-auto">
-      <div className="flex justify-between items-center font-roboto font-light my-5 p-2">
-        <p className="text-2xl">Profil</p>
-        <LogOut />
-      </div>
-      <ProfilDetails 
-        name={session.user?.name || ""}
-        email={session.user?.email || ""}
-        picture={session.user?.image || ""}
-      />
-      <div className="text-center m-20">
-        <ButtonLink text="+ Créer un nouveau deck" to={"/deck/create"} color="black" />
-      </div>
+    <>
+      <ProfilWelcome name={session.user?.name || ""} />
       {userDeck.length === 0 
       ? <DeckListEmpty /> 
       : <DeckList flashcards={userDeck}/>
       }
-    </div>
+    </>
   )
 }

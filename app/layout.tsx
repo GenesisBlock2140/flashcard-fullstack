@@ -1,6 +1,4 @@
-import { Footer } from './Footer'
 import './globals.css'
-import Navbar from './Navbar'
 import Providers from './providers'
 
 export const metadata = {
@@ -14,14 +12,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="fr">
+      <body className='mx-1'>
         <Providers>
-          <Navbar />
-          <main className='max-w-[1200px] mx-auto my-10 p-2'>
-            {children}
-          </main>
-          <Footer />
+          {children}
         </Providers>
       </body>
     </html>
