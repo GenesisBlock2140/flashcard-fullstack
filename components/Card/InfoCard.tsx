@@ -16,7 +16,7 @@ export const InfoCard: FC<IInfoCard> = ({title, description, icon}) => {
   const selectIcon = icon === "Smile" ? Smile : icon === "Bulb" ? Bulb : Rocket
 
   return (
-    <div className='w-[300px] h-40 text-left text-white bg-dark rounded-lg p-5'>
+    <div className='max-w-[350px] h-40 text-left text-white bg-dark rounded-lg p-5'>
       <Image src={selectIcon} alt='Bulb' className='my-1' width={40} />
       <p className='text-xl font-bold'>{title}</p>
       <p>{description}</p>

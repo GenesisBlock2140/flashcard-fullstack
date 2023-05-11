@@ -20,12 +20,10 @@ export const DeckCard: FC<IDeckCard> = ({title, deckId}) => {
 
   const deleteDeckFromUser = async () => {
     const deletedDeck = await deleteDeck({deckId})
-    const data = await deletedDeck.text()
-    console.log(data)
   }
 
   return (
-    <div className='max-w-[1000px] flex justify-between items-center border-2 border-[#f3f3f3] rounded-lg px-2 lg:px-6 py-7 m-2'>
+    <div className='max-w-[1000px] flex justify-between items-center border-2 border-[#f3f3f3] rounded-lg px-2 lg:px-6 py-7 my-2'>
       <p className='text-[18px] font-light text-center overflow-hidden'>{title}</p>
       <div className='flex items-center gap-2'>
         <Link href={`/deck/${deckId}`} className='bg-dark text-white font-semibold px-5 py-1 rounded-lg'>

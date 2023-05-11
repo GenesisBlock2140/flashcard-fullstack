@@ -22,7 +22,7 @@ export const FlashCard: FC<IFlashCard> = ({textRecto, textVerso}) => {
 
   return (
     <div 
-      className='max-w-[350px] h-[450px] border-2 border-[#f2f2f2] lg:bg-white drop-shadow rounded-2xl mx-auto p-5 break-words' 
+      className='w-[350px] h-[450px] border-2 border-[#f2f2f2] lg:bg-white drop-shadow rounded-2xl mx-auto p-5 break-words select-none' 
       onClick={() => setIsRecto(old => !old)}>
       <p className='flex items-center justify-center h-[450px] text-xl relative'>
         {isRecto ? textRecto : textVerso}

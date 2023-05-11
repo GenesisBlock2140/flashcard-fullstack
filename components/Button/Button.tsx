@@ -31,7 +31,7 @@ interface ButtonStyle {
 }
 
 const styles:ButtonStyle = {
-  base: 'text-xl font-medium px-4 py-2 rounded-lg border-[3px] border-dark transition ease-in-out duration-500',
+  base: 'text-base font-medium px-4 py-2 rounded-lg border-[3px] border-dark transition ease-in-out duration-500',
   state: {
     disabled: 'cursor-not-allowed opacity-50'
   },
