@@ -23,7 +23,7 @@ export const Modal: FC<IModal> = ({children, title, hasClickOnClose}) => {
 
   return (
     <>
-      { isOpen ? <div className='w-[100vw] h-[100vh] fixed top-0 left-0 flex justify-center items-center bg-dark/90'>
+      { isOpen ? <div className='w-[100vw] h-[100vh] fixed top-0 left-0 flex justify-center items-center bg-dark/90 z-[101]'>
         <div className='max-w-[450px] h-auto bg-white rounded-lg p-5 mx-2'>
           <div className='flex justify-between items-center font-bold text-[18px] mb-2'>
             <p>{title}</p>

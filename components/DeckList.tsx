@@ -9,7 +9,7 @@ interface IDeckList {
 export const DeckList: FC<IDeckList> = ({flashcards}) => {
   return (
     <>
-      <p className="text-2xl font-roboto font-light p-2">
+      <p className="text-xl font-light p-2">
         {`Decks (${flashcards.length})`}
       </p>
       <section className="block mx-auto">
