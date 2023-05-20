@@ -26,7 +26,7 @@ export const CardPricing: FC<ICardPricing> = ({title, description, price, isCurr
       </button>
     </div>
     <div>
-      <p className="my-2">Avantage</p>
+      <p className="my-2">Avantages</p>
       <ul className="px-1 text-light-gray">
         {includes.map((avantages, key) => {
           return <li className="flex gap-1" key={key}><Image src={checkSvg} alt="check" />{avantages}</li>

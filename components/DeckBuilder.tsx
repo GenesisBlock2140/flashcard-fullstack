@@ -7,6 +7,8 @@ import { TextAreaDeckCreation } from "@/components/TextAreaDeckCreation"
 import { createDeck } from "@/services/api/createDeck"
 import { ModalPublish } from "./Modal/ModalPublish"
 import { Input } from "./Input/Input"
+import { Error } from "./Error"
+import { redirect } from "next/navigation"
 
 type FlashCard = {
   textRecto: string
@@ -24,8 +26,11 @@ export const DeckBuilder: FC<IDeckBuilder> = () => {
 
 
   const deckNameInput = useRef<HTMLInputElement>(null)
+  const deckThemeInput = useRef<HTMLInputElement>(null)
   const textRecto = useRef<HTMLTextAreaElement>(null)
   const textVerso = useRef<HTMLTextAreaElement>(null)
+
+  const [msgError, setMsgError] = useState<string>("")
 
   // Checking to avoid Typescript error
   const isFlashcardNotNull = allFlashcards !== null && currentFlashCardEdit !== null
@@ -92,13 +97,30 @@ export const DeckBuilder: FC<IDeckBuilder> = () => {
   }
 
   const handleSubmit = async() => {
-    const testt = await createDeck({
-      name: "Test",
-      theme: "Test",
+
+    if (deckNameInput.current?.value === undefined || deckThemeInput.current?.value === undefined) {
+      setMsgError("Merci de remplir les champs de l'étape 1")
+      return 
+    }
+
+    if (deckNameInput.current.value.length < 3 || deckThemeInput.current.value.length < 3) {
+      setMsgError("Merci de remplir les champs de l'étape 1 avec plus de 3 caractères")
+      return
+    }
+
+    const submitCreateDeck = await createDeck({
+      name: deckNameInput.current?.value,
+      theme: deckThemeInput.current?.value,
       flashcard: allFlashcards
     })
 
-    console.log(testt)
+    if(submitCreateDeck.status === 200) {
+      // Using window.location because redirect from NextJS have issue with "use client" comp
+      return window.location.replace("/profil")
+    } else {
+      setMsgError("Une erreur coté serveur est survenu, rafraîchir la page.")
+    }
+
   }
 
   const TextRectoUpdateRealTime = (text:string) => {
@@ -111,6 +133,7 @@ export const DeckBuilder: FC<IDeckBuilder> = () => {
 
   return (
     <>
+      {msgError.length !== 0 && <Error message={msgError} />}
       <div className="flex flex-col justify-between items-start my-10">
         <h1 className="text-xl font-medium">1. Information du deck</h1>
         <p className="text-light-gray">Les informations de bases d'un deck </p>
@@ -122,7 +145,7 @@ export const DeckBuilder: FC<IDeckBuilder> = () => {
         </div>
         <div>
           <label className="m-1">Thème du deck</label>
-          <Input type="text" inputRef={deckNameInput} placeholder="Thème du deck" />
+          <Input type="text" inputRef={deckThemeInput} placeholder="Thème du deck" />
         </div>
       </div>
       <div className="flex flex-col justify-between items-start my-10">
@@ -134,7 +157,7 @@ export const DeckBuilder: FC<IDeckBuilder> = () => {
           <div className="flex justify-between lg:flex-col">
             <div className="block lg:flex lg:flex-col gap-2">
               <Button text="Suivant" color="white" action={nextFlashcard} />
-              <Button text="Précedent" color="white" action={previousFlashcard} />
+              <Button text="Précédent" color="white" action={previousFlashcard} />
             </div>
             <div>
               <Button text="Publier" color="black" action={() => setShowConfirm(show => !show)} />
@@ -148,14 +171,14 @@ export const DeckBuilder: FC<IDeckBuilder> = () => {
             <TextAreaDeckCreation textAreaName="Verso" textAreaRef={textVerso} textUpdate={TextVersoUpdateRealTime} />
           </div>
         </div>
-        <div className="max-w-[400px] mx-auto">
+        <div className="max-w-[400px] mx-auto hidden lg:block">
             <FlashCard textRecto={recto} textVerso={verso} />
         </div>
       </div>
       <div className="flex flex-col justify-between items-start my-10">
         <h1 className="text-xl font-medium">3. Vérifier les informations</h1>
-        <p className="text-light-gray">D'autres options seront bientôt disponible dans cette section. </p>
-        <p className="text-light-gray font-semibold my-2">Vérifiez les informations des flashcards et cliquez sur "Publier" dans la 2eme section si tout est bon.</p>
+        <p className="text-light-gray">D'autres options seront bientôt disponibles dans cette section. </p>
+        <p className="font-semibold my-2">Vérifiez les informations des flashcards et cliquez sur "Publier" dans la 2ème section si tout est bon.</p>
       </div>
       {showConfirm 
       ? <ModalPublish actionClose={() => setShowConfirm(show => !show)} action={handleSubmit} /> 

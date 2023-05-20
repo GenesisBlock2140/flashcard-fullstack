@@ -3,7 +3,11 @@ import { client } from "@/prisma/client"
 import { checkDeckFormat } from "@/utils/validator/checkDeckFormat"
 
 import { DeckView } from "@/components/DeckView"
+import { Metadata } from "next"
 
+export const metadata: Metadata = {
+  title: "Révision en cours ...",
+}
 
 export default async function DeckSlug ({params}:{params: { slug: string }}) {
 
@@ -27,10 +31,6 @@ export default async function DeckSlug ({params}:{params: { slug: string }}) {
     }
   })
 
-  console.log(deckData)
-
-  // TODO: Faire condition si PAS PUBLIC    ET   PAS LE DECK DE l'USER = return notfound
-  // TODO: Fetch data using prisma and send it to child
 
   return (
     <div className="text-center font-roboto my-10 rounded-2xl lg:bg-[#f7f7f7] lg:p-10">

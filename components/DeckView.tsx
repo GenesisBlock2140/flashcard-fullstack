@@ -39,7 +39,7 @@ export const DeckView: FC<IDeckView> = ({flashcards}) => {
         textVerso={flashcards[currentFlashcard].textVerso}
       />
       <div className="flex justify-center gap-2 my-5">
-        <Button text="Precedent" action={handlePreviousFlashcard} color='white' size='normal'/>
+        <Button text="Précédent" action={handlePreviousFlashcard} color='white' size='normal'/>
         <Button text="Suivant" action={handleNextFlashcard} color='black' size='normal'/>
       </div>
       <p className='text-xl'>

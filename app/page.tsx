@@ -43,16 +43,17 @@ export default function Home() {
             />
             <InfoCard 
               title="Intuitif" 
-              description="Un environnement simple, a portée de tous." 
+              description="Un environnement simple, à portée de tous." 
               icon="Bulb"
             />
           </div>
         </section>
         <section className="flex flex-wrap justify-around items-center my-20 lg:my-[200px]">
-          <div className="lg:max-w-[50%] text-light-gray text-center lg:text-left lg:text-xl lg:p-10">
+          <div className="lg:max-w-[50%] text-light-gray text-center lg:text-left lg:text-lg lg:p-10 mb-5">
             <h2 className="text-3xl text-dark font-bold mb-2">Une flashcard c'est quoi ?</h2>
-            <p>Une interface conçu pour la productivité, une interface conçu pour la productivité.</p>
-            <p className="mb-5">Voici un petit shema intéractif pour te permettre de comprendre.</p>
+            <p className="pt-3">Une flashcard est une carte virtuelle avec une face recto et une face verso, au recto on écrit la question, au verso la réponse /ou une explication.</p>
+            <p className="mb-5">Un deck est composé de plusieurs flashcards, c'est un outil très efficace pour les révisions / apprendre un sujet.</p>
+            <p className="mt-2">Une fois votre deck crée, vous pouvez <span className="font-semibold">réviser un sujet en quelques minutes</span>.</p>
           </div>
           <div className="text-center lg:w-[350px]">
             <FlashCard 

@@ -19,18 +19,18 @@ export default async function Details() {
         <div className="max-w-[600px] py-5">
           <div className="flex items-center justify-start gap-2 mb-6">
             <Image src={profilSvg} alt="profilDetails" width={18} height={18} />
-            <p className="text-base">Details du compte</p>
+            <p className="text-base">Détails du compte</p>
           </div>
           <div className="mb-5">
             <p className="font-medium my-1">Utilisateur</p>
             <p className="bg-slate-100 p-2 rounded-lg">{userInfo?.name}</p>
           </div>
           <div className="my-5">
-            <p className="font-medium my-1">Addresse mail</p>
+            <p className="font-medium my-1">Adresse mail</p>
             <p className="bg-slate-100 p-2 rounded-lg">{userInfo?.email}</p>
           </div>
           <div className="my-5">
-            <p className="font-medium my-1">Role</p>
+            <p className="font-medium my-1">Rôle</p>
             <p className="bg-slate-100 p-2 rounded-lg">Utilisateur</p>
           </div>
         </div>
