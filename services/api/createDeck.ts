@@ -1,3 +1,5 @@
+import { hostUrl } from "@/config/hostConf"
+
 interface IcreateDeck {
   name: string
   theme: string
@@ -10,7 +12,7 @@ type FlashCard = {
 }
 
 export const createDeck = async ({name, theme, flashcard}:IcreateDeck) => {
-  const newDeck = await fetch('http://localhost:3000/api/deck/create', {
+  const newDeck = await fetch(`${hostUrl}/api/deck/create`, {
     method: 'POST',
     body: JSON.stringify({
       name,

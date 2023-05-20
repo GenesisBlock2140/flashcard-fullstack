@@ -15,7 +15,7 @@ export const faqConf:IfaqConf = {
     },
     {
       question: "Comment créer des flashcards ?",
-      answer: "C'est très simple, connecte toi puis rend toi dans 'Créer' dans ton tableau de bord."
+      answer: "C'est très simple, connecte toi puis rends toi dans 'Créer' dans ton tableau de bord."
     },
     {
       question: "C'est quoi un deck ?",

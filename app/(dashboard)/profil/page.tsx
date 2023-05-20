@@ -54,6 +54,7 @@ export default async function Profil() {
       ? <DeckListEmpty /> 
       : <DeckList flashcards={userDeck}/>
       }
+      <p className="my-5 text-sm">* La fonction de modification des decks est actuellement désactivé.</p>
     </>
   )
 }

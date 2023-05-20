@@ -20,6 +20,9 @@ export const DeckCard: FC<IDeckCard> = ({title, deckId}) => {
 
   const deleteDeckFromUser = async () => {
     const deletedDeck = await deleteDeck({deckId})
+    if (deletedDeck.status === 200){
+      return window.location.replace("/profil")
+    }
   }
 
   return (
@@ -29,7 +32,7 @@ export const DeckCard: FC<IDeckCard> = ({title, deckId}) => {
         <Link href={`/deck/${deckId}`} className='bg-dark text-white font-semibold px-5 py-1 rounded-lg'>
           Voir
         </Link>
-        <Link href={`/deck/edit/${deckId}`}>
+        <Link href={`/profil`}>
           <Image src={editSvg} alt='edit' width={25} />
         </Link>
         <button onClick={() => setShowConfirmDelete(show => !show)}>
